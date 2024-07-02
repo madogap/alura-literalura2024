@@ -1,6 +1,7 @@
 package com.alura.literalura.Curso;
 
 
+import com.alura.literalura.Curso.model.Autor;
 import com.alura.literalura.Curso.model.Livro;
 
 import java.util.DoubleSummaryStatistics;
