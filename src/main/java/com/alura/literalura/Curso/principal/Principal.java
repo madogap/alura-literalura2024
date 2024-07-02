@@ -1,20 +1,27 @@
-package com.alura.literalura.Curso;
+package com.alura.literalura.Curso.principal;
 
 
 import com.alura.literalura.Curso.model.Autor;
+import com.alura.literalura.Curso.model.DadosAutor;
+import com.alura.literalura.Curso.model.DadosLivro;
 import com.alura.literalura.Curso.model.Livro;
+import com.alura.literalura.Curso.repository.AutorRepository;
+import com.alura.literalura.Curso.repository.LivroRepository;
+import com.alura.literalura.Curso.service.ConsumoApi;
+import com.alura.literalura.Curso.service.DadosConverter;
 
 import java.util.DoubleSummaryStatistics;
 import java.util.Scanner;
 
 public class Principal {
     private Scanner sc = new Scanner(System.in);
-    private ConsumirApi request = new ConsumirApi();
+    private ConsumoApi request = new ConsumoApi();
     private AutorRepository repositorioAutor;
-    private livroRepository repositorioLivro;
+    private LivroRepository repositorioLivro;
     private DadosConverter conversor = new DadosConverter();
+    private final String ADDRESS = "https://gutendex.com/books?search=";
 
-    public Principal(AutoRepository repositorioAutor,
+    public Principal(AutorRepository repositorioAutor,
                      LivroRepository repositorioLivro){
         this.repositorioAutor = repositorioAutor;
         this.repositorioLivro = repositorioLivro;
@@ -145,7 +152,7 @@ public class Principal {
     private void buscarNovoLivro() {
         System.out.println("\nQual livro deseja buscar?");
         var buscaDoUsuario = sc.nextLine();
-        var dados = requisicao.consumo(ADDRESS+ buscaDoUsuario.replace(" ","%20"));
+        var dados = request.consumo(ADDRESS+ buscaDoUsuario.replace(" ","%20"));
         salvarNoDb(dados);
     }
 
